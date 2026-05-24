@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>小爱同学</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: radial-gradient(circle at center, #1b1024 0%, #050207 55%, #000000 100%);
+      color: #ff8add;
+      font-family: SimSun, "宋体", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 14px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      width: min(94vw, 860px);
+      text-align: center;
+    }
+
+    .title {
+      font-size: 28px;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      color: #ff8add;
+      text-shadow: 0 0 8px rgba(255, 105, 220, 0.95),
+                   0 0 18px rgba(255, 70, 210, 0.65),
+                   0 0 32px rgba(255, 60, 190, 0.35);
+      letter-spacing: 1px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 0 22px rgba(255, 80, 220, 0.38),
+                  0 0 58px rgba(120, 60, 255, 0.22);
+      background: #000;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+    }
+
+    .hint {
+      margin-top: 16px;
+      font-size: 15px;
+      color: rgba(255, 190, 238, 0.86);
+      line-height: 1.7;
+    }
+
+    .play-button {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 22px;
+      border: 1px solid rgba(255, 138, 221, 0.7);
+      border-radius: 999px;
+      color: #ffd7f4;
+      background: rgba(255, 88, 210, 0.14);
+      text-shadow: 0 0 8px rgba(255, 80, 220, 0.8);
+      box-shadow: 0 0 18px rgba(255, 80, 220, 0.24);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @media (max-width: 520px) {
+      .title {
+        font-size: 20px;
+      }
+
+      .page {
+        padding: 18px 10px;
+      }
+
+      .hint {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="card">
+      <div class="title">小爱同学，希望未来的你、我、我们都幸福</div>
+
+      <div class="video-wrap">
+        <video id="heartVideo"
+               src="heart_particle_reproduce.2.mp4"
+               controls
+               playsinline
+               webkit-playsinline
+               preload="auto"
+               autoplay
+               muted>
+          你的浏览器暂不支持视频播放。
+        </video>
+      </div>
+
+      <div class="hint">
+        如果微信中没有自动播放，请轻触视频或点击下方按钮。
+        <br />
+        <span class="play-button" onclick="playVideo()">播放爱心动画</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const video = document.getElementById("heartVideo");
+
+    function playVideo() {
+      video.muted = false;
+      video.play().catch(() => {
+        alert("请点击视频画面播放。");
+      });
+    }
+
+    window.addEventListener("load", () => {
+      video.play().catch(() => {
+        // 微信浏览器可能阻止自动播放，保留手动播放按钮即可
+      });
+    });
+  </script>
+</body>
+</html>
